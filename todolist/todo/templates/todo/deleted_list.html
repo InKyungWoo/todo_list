@@ -1,0 +1,28 @@
+<!-- deleted_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleted Todo List</title>
+</head>
+<body>
+    <h1>Deleted Todo List</h1>
+
+    {% if deleted_todos %}
+        <ul>
+            {% for todo in deleted_todos %}
+                <li>
+                    <h3>{{ todo.title }}</h3>
+                    <p>{{ todo.description }}</p>
+                    <p>Deleted At: {{ todo.deleted_at }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No deleted todos found.</p>
+    {% endif %}
+</body>
+</html>

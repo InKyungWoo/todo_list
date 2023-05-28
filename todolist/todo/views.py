@@ -49,3 +49,8 @@ def todo_delete(request, pk):
     todo = get_object_or_404(Todo, id=pk)
     todo.delete()
     return redirect('todo_list')
+
+# 삭제 리스트 
+def deleted_list(request):
+    deleted_todos = Todo.objects.filter(complete=True)
+    return render(request, 'todo/deleted_list.html', {'deleted_todos': deleted_todos})
