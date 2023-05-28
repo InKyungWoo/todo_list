@@ -10,20 +10,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>TODO 목록</h1>
+        <div class="mt-3">
+          <h1>Todo List</h1>
+          <p class="lead">{{ now|date:"오늘은 m월 d일 :)" }}</p>
+        </div>  
         <div class="d-flex justify-content-end">
           <style>
             .add {
-              background-color: #ad9cb7; 
+              background-color: #d9b0e1; 
               color: #ffffff; 
+              border-color: #d9b0e1; 
             }
             .donedone {
-              background-color: #84688f; 
+              background-color: #b989c3; 
               color: #ffffff;
+              border-color : #b989c3
             }
             </style>
             <a href="{% url 'todo_post' %}" class="btn add btn-primary me-2"><i class="bi bi-plus-square"></i> Add Todo</a>
-            <a href="{% url 'done_list' %}" class="btn donedone btn-primary me-2">해냈다 해냈어</a>
+            <a href="{% url 'done_list' %}" class="btn donedone btn-primary me-2">해냈다 해냈어!</a>
         </div>
         <ul class="list-group mt-3">
             {% for todo in todos %}
@@ -31,21 +36,30 @@
                 <div>
                     <a href="{% url 'todo_detail' pk=todo.pk %}" class="text-decoration-none">{{ todo.title }}</a>
                     {% if todo.important %}
-                        <span class="badge bg-danger">!</span>
+                        <style>
+                        .bg-custom {
+                          background-color: #ff5965;
+                          color: #ffffff;
+                        }
+                        </style>
+                        <span class="badge bg-custom">!</span>
                     {% endif %}
+                    <p class="mb-0">{{ todo.description }}</p>  <!-- description 표시 -->
                 </div>
                 <div>
                     <style>
                     .done {
-                      background-color: #9cb997; 
+                      background-color: #90cbca; 
                       color: #ffffff; 
                     }
                     .edit {
-                      background-color: #6d8f66; 
+                      background-color: #00d0bc; 
+                      border-color: #00d0bc;
                       color: #ffffff; 
                     }
                     .delete {
-                      background-color: #43583e; 
+                      background-color: #29a0a0; 
+                      border-color: #29a0a0;
                       color: #ffffff;
                     }
                     </style>
@@ -62,7 +76,8 @@
         <div class="mt-3 d-flex justify-content-end">
           <style>
             .deleted {
-              background-color: #c44513; /* 연한 초록색으로 변경 */
+              background-color: #ff5965;
+              border-color: #ff5965;
               color: #ffffff; /* 텍스트 색상 */
             }
             </style>
